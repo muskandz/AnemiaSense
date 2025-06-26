@@ -14,71 +14,71 @@ from sklearn.ensemble import GradientBoostingClassifier
 
 df= pd.read_csv('anemia.csv')
 
-# print("First 5 rows: ")
-# print(df.head())
+print("First 5 rows: ")
+print(df.head())
 
-# print("\n Dataset Info: ")
-# print(df.info())
+print("\n Dataset Info: ")
+print(df.info())
 
-# print("\n Summary Stats: ")
-# print(df.describe())
+print("\n Summary Stats: ")
+print(df.describe())
 
-# print("\n Missing Values: ")
-# print(df.isnull().sum())
+print("\n Missing Values: ")
+print(df.isnull().sum())
 
-#checking for the count of anemia and not anemia
-# results = df['Result'].value_counts()
-# results.plot(kind = 'bar', color = ['blue', 'green'])
-# plt.xlabel('Result')
-# plt.ylabel('Frequency')
-# plt.title('Count of Result')
-# plt.show()
+# checking for the count of anemia and not anemia
+results = df['Result'].value_counts()
+results.plot(kind = 'bar', color = ['blue', 'green'])
+plt.xlabel('Result')
+plt.ylabel('Frequency')
+plt.title('Count of Result')
+plt.show()
 
 
-# majorclass = df[df['Result'] == 0]
-# minorclass = df[df['Result'] == 1]
+majorclass = df[df['Result'] == 0]
+minorclass = df[df['Result'] == 1]
 
-# major_downsample = resample(majorclass, replace = False, n_sample = len(minorclass), random_state=42)
-# df = pd.concat([major_downsample, minorclass])
-# print(df['Result'].value_counts())
+major_downsample = resample(majorclass, replace = False, n_sample = len(minorclass), random_state=42)
+df = pd.concat([major_downsample, minorclass])
+print(df['Result'].value_counts())
 
 sns.set(style="whitegrid")
 
-# # Count of Anemia vs Normal
-# plt.figure(figsize=(6, 4))
-# sns.countplot(x="Result", data=df, palette='Set2')
-# plt.title('Class Distribution: Anemia (1) vs Normal (0)')
-# plt.xlabel('Result')
-# plt.ylabel('Count')
-# plt.show()
+# Count of Anemia vs Normal
+plt.figure(figsize=(6, 4))
+sns.countplot(x="Result", data=df, palette='Set2')
+plt.title('Class Distribution: Anemia (1) vs Normal (0)')
+plt.xlabel('Result')
+plt.ylabel('Count')
+plt.show()
 
 # Distrbution of Heamoglobin
-# plt.figure(figsize=(6, 4))
-# sns.histplot(df['Hemoglobin'], kde=True, color='tomato')
-# plt.title('Heamoglobin Distribution')
-# plt.xlabel('Heamoglobin')
-# plt.show()
+plt.figure(figsize=(6, 4))
+sns.histplot(df['Hemoglobin'], kde=True, color='tomato')
+plt.title('Heamoglobin Distribution')
+plt.xlabel('Heamoglobin')
+plt.show()
 
-# # Boxplot of Haemoglobin
-# plt.figure(figsize=(6, 4))
-# sns.boxplot(x='Result', y = 'Hemoglobin', data=df)
-# plt.title('Heamoglobin vs Anemia Result')
-# plt.show()
+# Boxplot of Haemoglobin
+plt.figure(figsize=(6, 4))
+sns.boxplot(x='Result', y = 'Hemoglobin', data=df)
+plt.title('Heamoglobin vs Anemia Result')
+plt.show()
 
-# # Correlation heatmap
-# plt.figure(figsize=(7, 5))
-# sns.heatmap(df.corr(), annot=True, cmap='coolwarm', fmt=".2f")
-# plt.title('Feature Correlation Heatmap')
-# plt.show()
+# Correlation heatmap
+plt.figure(figsize=(7, 5))
+sns.heatmap(df.corr(), annot=True, cmap='coolwarm', fmt=".2f")
+plt.title('Feature Correlation Heatmap')
+plt.show()
 
-# #bivariate analysis
-# plt.figure(figsize=(6, 6))
-# ax = sns.barplot(y=df['Heamoglobin'], x=df['Gender'], hue=df['Result'], ci=None)
-# ax.set(label=['male', 'female'])
-# ax.bar_label(ax.containers[0])
-# ax.bar_label(ax.containers[1])
-# plt.title("Mean Heamoglobin by Gender and Result")
-# plt.show()
+#bivariate analysis
+plt.figure(figsize=(6, 6))
+ax = sns.barplot(y=df['Heamoglobin'], x=df['Gender'], hue=df['Result'], ci=None)
+ax.set(label=['male', 'female'])
+ax.bar_label(ax.containers[0])
+ax.bar_label(ax.containers[1])
+plt.title("Mean Heamoglobin by Gender and Result")
+plt.show()
 
 # Feature Selection
 X = df.drop('Result', axis =1) # input feature
